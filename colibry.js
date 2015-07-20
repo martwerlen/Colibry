@@ -333,7 +333,8 @@ if (Meteor.isServer) {
   },
 
   'RemoveBook': function(SelectedBook_Id){
-  BOOKS.remove(SelectedBook_Id);
+  var currentUserId = Meteor.userId();
+  BOOKS.remove({_id:SelectedBook_Id, BookOwner: currentUserId})  
   },
 
   'ChangeStatut': function(selectedbook,statutcible){
